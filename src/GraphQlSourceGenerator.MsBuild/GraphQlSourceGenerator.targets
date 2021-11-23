@@ -1,0 +1,53 @@
+﻿<Project>
+  <PropertyGroup>
+    <CustomTasksAssembly>$(MSBuildThisFileDirectory)\$(MSBuildThisFileName).dll</CustomTasksAssembly>
+  </PropertyGroup>
+
+  <UsingTask TaskName="GraphQlSourceGenerator.GraphQlSourceGenerator" AssemblyFile="$(MSBuildThisFileDirectory)..\tools\netstandard2.0\GraphQlSourceGenerator.dll" />
+  <UsingTask TaskName="GraphQlSourceGenerator.GraphQlSchemaLoad" AssemblyFile="$(MSBuildThisFileDirectory)..\tools\netstandard2.0\GraphQlSourceGenerator.dll" />
+
+  <Target Name="PrepareGraphQlGeneratorInfoProperties">
+    <PropertyGroup>
+      <DownloadSchemaInfo Condition="'$(DownloadSchemaInfo)' == ''">false</DownloadSchemaInfo>
+      <GraphQlSchemaLoaderSettings Condition="'$(GraphQlSchemaLoaderSettings)' == ''">$(MSBuildProjectDirectory)\GraphQlSchemaLoaderSettings.json</GraphQlSchemaLoaderSettings>
+      <GraphQlGeneratorSettingsPath Condition="'$(GraphQlGeneratorSettingsPath)' == ''">$(MSBuildProjectDirectory)\GraphQlGeneratorSettings.json</GraphQlGeneratorSettingsPath>
+      <GraphQlSchemaPath Condition="'$(GraphQlSchemaPath)' == ''">$(MSBuildProjectDirectory)\schema.json</GraphQlSchemaPath>
+      <GraphQlGeneratorOutputPath Condition="'$(GraphQlGeneratorOutputPath)' == ''">GraphQlGenerated</GraphQlGeneratorOutputPath>
+    </PropertyGroup>
+  </Target>
+
+  <Target Name="GraphQlSchemaLoad"
+          DependsOnTargets="PrepareGraphQlGeneratorInfoProperties"
+          AfterTargets="PrepareGraphQlGeneratorInfoProperties"
+          Condition="'$(DownloadSchemaInfo)' == 'true'"
+          BeforeTargets="ResolveAssemblyReferences;ResolveAssemblyReferencesDesignTime">
+    <GraphQlSchemaLoad OutputFilePath="$(GraphQlSchemaPath)"
+                       SettingsPath ="$(GraphQlSchemaLoaderSettings)"/>
+  </Target>
+
+  <Target Name="GraphQlSourceGeneratorAfterLoadSchema"
+          DependsOnTargets="GraphQlSchemaLoad"
+          AfterTargets="GraphQlSchemaLoad"
+          Condition="'$(DownloadSchemaInfo)' == 'true'"
+          BeforeTargets="ResolveAssemblyReferences;ResolveAssemblyReferencesDesignTime">
+    <GraphQlSourceGenerator OutputFolder="$(IntermediateOutputPath)\$(GraphQlGeneratorOutputPath)"
+                            SettingsPath ="$(GraphQlGeneratorSettingsPath)"
+                            SchemaPath ="$(GraphQlSchemaPath)"/>
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)\GraphQlGenerated\*.g.cs"/>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="GraphQlSourceGenerator"
+          DependsOnTargets="PrepareGraphQlGeneratorInfoProperties"
+          AfterTargets="PrepareGraphQlGeneratorInfoProperties"
+          Condition="'$(DownloadSchemaInfo)' == 'false'"
+          BeforeTargets="ResolveAssemblyReferences;ResolveAssemblyReferencesDesignTime">
+    <GraphQlSourceGenerator OutputFolder="$(IntermediateOutputPath)\$(GraphQlGeneratorOutputPath)"
+                            SettingsPath ="$(GraphQlGeneratorSettingsPath)"
+                            SchemaPath ="$(GraphQlSchemaPath)"/>
+    <ItemGroup>
+      <Compile Include="$(IntermediateOutputPath)\GraphQlGenerated\*.g.cs"/>
+    </ItemGroup>
+  </Target>
+</Project>
