@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQlSourceGenerator.MsBu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQlSourceGenerator.Common", "src\GraphQlSourceGenerator.Common\GraphQlSourceGenerator.Common.csproj", "{9F538D04-56C6-4E0D-990F-8BD394D9EAD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQlSourceGenerator.NET5", "src\GraphQlSourceGenerator.NET5\GraphQlSourceGenerator.NET5.csproj", "{44B87140-BF95-43E2-BDDA-C34DA0CDF1D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQlSourceGenerator.NET5", "src\GraphQlSourceGenerator.NET5\GraphQlSourceGenerator.NET5.csproj", "{44B87140-BF95-43E2-BDDA-C34DA0CDF1D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQlSourceGenerator.Tests", "tests\GraphQlSourceGenerator.Tests\GraphQlSourceGenerator.Tests.csproj", "{73B84888-2E02-44AB-AB4F-4E728E458FDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{44B87140-BF95-43E2-BDDA-C34DA0CDF1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44B87140-BF95-43E2-BDDA-C34DA0CDF1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44B87140-BF95-43E2-BDDA-C34DA0CDF1D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73B84888-2E02-44AB-AB4F-4E728E458FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73B84888-2E02-44AB-AB4F-4E728E458FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73B84888-2E02-44AB-AB4F-4E728E458FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73B84888-2E02-44AB-AB4F-4E728E458FDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
