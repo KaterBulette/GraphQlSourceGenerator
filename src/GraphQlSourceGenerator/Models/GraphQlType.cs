@@ -2,7 +2,7 @@
 
 namespace GraphQlSourceGenerator.Models
 {
-    internal class GraphQlType : GraphQlTypeBase
+    public class GraphQlType : GraphQlTypeBase
     {
         public string Description { get; set; }
         public IList<GraphQlField> Fields { get; set; }

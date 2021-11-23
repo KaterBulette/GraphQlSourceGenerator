@@ -1,43 +1,17 @@
-﻿using System;
+﻿using GraphQlSourceGenerator.Enums;
+using GraphQlSourceGenerator.Models;
+using GraphQlSourceGenerator.Models.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using GraphQlSourceGenerator.Enums;
-using GraphQlSourceGenerator.Models;
-using GraphQlSourceGenerator.Models.Interfaces;
 
 namespace GraphQlSourceGenerator.Utils
 {
     internal static class GraphQlDataParser
     {
         private static readonly Regex ListTypeMatcher = new(@"List<(\w*)>");
-
-        public static GraphQlSchema DeserializeGraphQlSchema(this string content)
-        {
-            try
-            {
-                var serializerSettings = new JsonSerializerSettings
-                {
-                    Converters = { new StringEnumConverter() }
-                };
-                var schema = JsonConvert.DeserializeObject<GraphQlResult>(content, serializerSettings)?.Data?.Schema
-                          ?? JsonConvert.DeserializeObject<GraphQlData>(content, serializerSettings)?.Schema;
-
-                if (schema == null)
-                {
-                    throw new ArgumentException("not a GraphQL schema", nameof(content));
-                }
-
-                return schema;
-            }
-            catch (JsonReaderException exception)
-            {
-                throw new ArgumentException("not a GraphQL schema", nameof(content), exception);
-            }
-        }
 
         public static string ToCamelCase(this string value)
         {

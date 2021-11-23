@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GraphQlSourceGenerator.Models
 {
-    internal class GraphQlGeneratorSettings
+    public class GraphQlGeneratorSettings
     {
         [JsonProperty("namespace")]
         public string Namespace { get; }

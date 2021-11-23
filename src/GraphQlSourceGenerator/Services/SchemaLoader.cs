@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraphQlSourceGenerator.Services
 {
-    internal class SchemaLoader
+    public class SchemaLoader
     {
         private readonly string _url;
         private readonly int _innerLevelOfType;

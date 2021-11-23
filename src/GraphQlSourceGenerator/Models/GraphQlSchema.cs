@@ -2,7 +2,7 @@
 
 namespace GraphQlSourceGenerator.Models
 {
-    internal class GraphQlSchema
+    public class GraphQlSchema
     {
         public GraphQlRequestType QueryType { get; set; }
         public IList<GraphQlType> Types { get; set; }
