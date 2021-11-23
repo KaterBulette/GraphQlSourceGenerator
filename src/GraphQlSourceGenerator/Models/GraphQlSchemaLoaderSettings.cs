@@ -2,7 +2,7 @@
 
 namespace GraphQlSourceGenerator.Models
 {
-    internal class GraphQlSchemaLoaderSettings
+    public class GraphQlSchemaLoaderSettings
     {
         [JsonProperty("schemaUrl")]
         public string SchemaUrl { get; }

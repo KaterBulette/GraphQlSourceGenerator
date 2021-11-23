@@ -2,7 +2,7 @@
 
 namespace GraphQlSourceGenerator.Enums
 {
-    internal enum GraphQlTypeKind
+    public enum GraphQlTypeKind
     {
         [EnumMember(Value = "SCALAR")] Scalar,
         [EnumMember(Value = "ENUM")] Enum,

@@ -9,7 +9,7 @@ using System.Text;
 
 namespace GraphQlSourceGenerator.Services
 {
-    internal class Generator
+    public class Generator
     {
         private readonly GraphQlGeneratorSettings _graphQlGeneratorSettings;
         private readonly string _usings;
@@ -38,6 +38,7 @@ namespace GraphQlSourceGenerator.Services
         {
             _ = schema ?? throw new ArgumentNullException(nameof(schema));
             _graphQlGeneratorSettings = graphQlGeneratorSettings ?? throw new ArgumentNullException(nameof(graphQlGeneratorSettings));
+            _graphQlGeneratorSettings.Usings.Add("GraphQlSourceGenerator.Common.Interfaces");
 
             var apiTypes = schema.Types
                                  .Where(t => !t.Name.StartsWith("_")

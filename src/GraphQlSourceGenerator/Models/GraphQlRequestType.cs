@@ -1,6 +1,6 @@
 ﻿namespace GraphQlSourceGenerator.Models
 {
-    internal class GraphQlRequestType
+    public class GraphQlRequestType
     {
         public string Name { get; set; }
     }

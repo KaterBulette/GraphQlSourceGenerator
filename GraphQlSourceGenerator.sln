@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQlSourceGenerator", "src\GraphQlSourceGenerator\GraphQlSourceGenerator.csproj", "{DE088761-9FA5-4BBA-A428-74AF1FA24BBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQlSourceGenerator", "src\GraphQlSourceGenerator\GraphQlSourceGenerator.csproj", "{DE088761-9FA5-4BBA-A428-74AF1FA24BBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQlSourceGenerator.MsBuild", "src\GraphQlSourceGenerator.MsBuild\GraphQlSourceGenerator.MsBuild.csproj", "{CBEB8EC6-FEE5-4BF6-BF0C-EB5C29984AA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphQlSourceGenerator.Common", "src\GraphQlSourceGenerator.Common\GraphQlSourceGenerator.Common.csproj", "{9F538D04-56C6-4E0D-990F-8BD394D9EAD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{DE088761-9FA5-4BBA-A428-74AF1FA24BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE088761-9FA5-4BBA-A428-74AF1FA24BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE088761-9FA5-4BBA-A428-74AF1FA24BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBEB8EC6-FEE5-4BF6-BF0C-EB5C29984AA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBEB8EC6-FEE5-4BF6-BF0C-EB5C29984AA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBEB8EC6-FEE5-4BF6-BF0C-EB5C29984AA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBEB8EC6-FEE5-4BF6-BF0C-EB5C29984AA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F538D04-56C6-4E0D-990F-8BD394D9EAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F538D04-56C6-4E0D-990F-8BD394D9EAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F538D04-56C6-4E0D-990F-8BD394D9EAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F538D04-56C6-4E0D-990F-8BD394D9EAD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
