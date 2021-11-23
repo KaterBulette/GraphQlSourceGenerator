@@ -1,8 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+	<BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
+	<NoPackageAnalysis>true</NoPackageAnalysis>
+	<PackageId>GraphQlSourceGenerator</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>Shkarin A.V</Authors>
+	<Company>Shkarin A.V</Company>
+	<Description>GraphQl-CSharp source generator.</Description>
+	<LangVersion>latest</LangVersion>
+	<!-- Generates a package at build -->
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,5 +28,51 @@
   	<PackageReference Include="System.Collections.Immutable" Version="1.6.0" PrivateAssets="All" />
   	<PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" PrivateAssets="All" />
   </ItemGroup>
+
+  <PropertyGroup>
+  	<PackageDirectory>$(MSBuildProjectDirectory)\..\..\packages</PackageDirectory>
+  	<PackageIcon>icon.png</PackageIcon>
+  	<PackageIconUrl />
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">
+  	<PackageReference Include="Microsoft.VisualStudio.Setup.Configuration.Interop" PrivateAssets="All" />
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETCoreApp'">
+  	<PackageReference Include="System.Text.Encoding.CodePages" Version="4.6.0" PrivateAssets="All" />
+  </ItemGroup>
+  
+  <ItemGroup>
+  	<Content Include="GraphQlSourceGenerator.targets">
+  		<Pack>true</Pack>
+  		<PackagePath>build\</PackagePath>
+  	</Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+  	<None Include="..\..\icon.png">
+  		<Pack>True</Pack>
+  		<PackagePath></PackagePath>
+  	</None>
+  </ItemGroup>
+  
+  <Target Name="PackTaskDependencies" BeforeTargets="GenerateNuspec">
+  	<!--The include needs to happen after output has been copied to build output folder
+     but before NuGet generates a nuspec. See https://github.com/NuGet/Home/issues/4704. -->
+  	<ItemGroup>
+  		<_PackageFiles Include="bin\$(Configuration)\*\Newtonsoft.Json.dll">
+  			<PackagePath>tools\%(RecursiveDir)</PackagePath>
+  			<Visible>false</Visible>
+  			<BuildAction>Content</BuildAction>
+  		</_PackageFiles>
+  	</ItemGroup>
+  </Target>
+  
+  <Target Name="CopyPackage"
+          AfterTargets="Pack"
+          Condition="'$(Configuration)' == 'Release'" >
+  	<Copy SourceFiles="$(OutputPath)\..\$(PackageId).$(PackageVersion).nupkg" DestinationFolder="$(PackageDirectory)\" />
+  </Target>
 
 </Project>
